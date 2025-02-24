@@ -1,5 +1,4 @@
 // import { useState } from 'react'
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Home';
@@ -10,6 +9,7 @@ import { Container } from 'react-bootstrap';
 import EditPage from './EditPage';
 import { NoteLayout } from './NoteLayout';
 import { Note } from './Note';
+import './App.css';
 
 
 export type Tag = {
@@ -59,9 +59,6 @@ function App() {
     )
   }
 
-  // console.log(notesWithTags);
-  // setTags([]);
-
   function handlecreateNote({ tags, ...data }: NotesData) {
     setNotes(prevNotes => {
       return [
@@ -75,9 +72,9 @@ function App() {
     setNotes(prevNotes => {
       return (
         prevNotes.map(note => {
-          if(note.id === id){
-            return {...note, ...data, tagIds: tags.map(tag => tag.id)}
-          }else{
+          if (note.id === id) {
+            return { ...note, ...data, tagIds: tags.map(tag => tag.id) }
+          } else {
             return note
           }
         })
@@ -85,29 +82,27 @@ function App() {
     })
   }
 
-  function handleDeleteNote(id: string){
-    console.log("prev notes : ", notes, id, notes.filter(note => note.id !== id));
-    setNotes(prevNotes => { return prevNotes.filter(note => note.id !== id ) })
-    console.log("updated notes: ", notes);
+  function handleDeleteNote(id: string) {
+    setNotes(prevNotes => prevNotes.filter(note => note.id !== id))
   }
 
   function addTag(tag: Tag) {
     setTags(tags => [...tags, tag]);
   }
 
-  function updateTag(id: string, label: string){
+  function updateTag(id: string, label: string) {
     setTags(tags => (
       tags.map(tag => {
-        if(tag.id === id){
-          return {...tag, label: label}
-        }else{
+        if (tag.id === id) {
+          return { ...tag, label: label }
+        } else {
           return tag
         }
       })
     ))
   }
 
-  function deleteTag(id: string){
+  function deleteTag(id: string) {
     setTags(tags => tags.filter(tag => tag.id !== id))
   }
 
@@ -116,13 +111,22 @@ function App() {
     <Container>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home allTags={tags} allNotes={notesWithTags} updateTag={updateTag} deleteTag={deleteTag}/>} />
-          <Route path='/:id'element={<NoteLayout notes={notesWithTags} />} >
+          <Route path='/'
+              element={<Home allTags={tags}
+              allNotes={notesWithTags}
+              updateTag={updateTag}
+              deleteTag={deleteTag} />}
+          />
+
+          <Route path='/:id' element={<NoteLayout notes={notesWithTags} />} >
             <Route index element={<Note onDelete={handleDeleteNote} />} />
-            <Route path='edit' 
-              element={<EditPage onSubmit={handleUpdateNote} allTags={tags} addTag={addTag} />} />
+            <Route path='edit'
+              element={<EditPage onSubmit={handleUpdateNote} allTags={tags} addTag={addTag} />}
+            />
           </Route>
-          <Route path='/new' element={<NewPage onSubmit={handlecreateNote} allTags={tags} addTag={addTag} />} />
+          <Route path='/new' 
+            element={<NewPage onSubmit={handlecreateNote} allTags={tags} addTag={addTag} />} 
+          />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </BrowserRouter>

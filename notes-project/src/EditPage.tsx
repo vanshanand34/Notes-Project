@@ -10,25 +10,26 @@ export type EditNoteProps = {
     addTag: (tag: Tag) => void,
 }
 
-export default function EditNote({ onSubmit, allTags, addTag }: EditNoteProps) {
-    // console.log("upper ", allTags);
+export default function EditNote(
+    { onSubmit, allTags, addTag }: EditNoteProps
+) {
     const note = useNote();
-    return <>
-        <Container>
-            <Row className="my-4">
-            <h1>Edit Note</h1>
-            </Row>
-            <Row>
-                <Col>
-                    <NoteForm 
-                        title={note.title}
-                        body={note.body}
-                        tags={note.tags}
-                        onSubmit={(data) => onSubmit(note.id, data)} 
-                        allTags={allTags} 
-                        addTag={addTag} />
-                </Col>
-            </Row>
-        </Container>
-    </>
+    return (
+            <Container className='p-4'>
+                <Row className="my-4">
+                    <h1>Edit Note</h1>
+                </Row>
+                <Row>
+                    <Col>
+                        <NoteForm
+                            title={note.title}
+                            body={note.body}
+                            tags={note.tags}
+                            onSubmit={(data) => onSubmit(note.id, data)}
+                            allTags={allTags}
+                            addTag={addTag} />
+                    </Col>
+                </Row>
+            </Container>
+    )
 }

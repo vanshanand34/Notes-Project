@@ -9,11 +9,15 @@ export type NewNoteProps = {
     addTag: (tag: Tag) => void
 }
 
-export default function NewNote({ onSubmit, allTags, addTag }: NewNoteProps) {
-    console.log("upper ", allTags);
+export default function NewNote(
+    { onSubmit, allTags, addTag }: NewNoteProps
+) {
+
     return <>
-        <Container>
+        <Container className='p-4'>
+            <Row className='mb-2'>
             <h1>New Note</h1>
+            </Row>
             <Row>
                 <Col>
                     <NoteForm onSubmit={onSubmit} allTags={allTags} addTag={addTag} />

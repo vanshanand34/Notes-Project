@@ -2,38 +2,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { useNote } from "./NoteLayout";
 import { Row, Col, Badge, Stack, Button, Container } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
+import styles from "./NotesList.module.css"
+import "./App.css"
 
 type NoteProps = {
     onDelete: (id: string) => void
 }
 
 
-export function Note({onDelete}: NoteProps) {
+export function Note({ onDelete }: NoteProps) {
+
     const note = useNote();
     const navigate = useNavigate();
 
-    function handleDeleteNote(){
-        // e.preventDefault();
-        onDelete(note.id);
-        console.log(note.id, " delted");
-        navigate("/");
-    }
-    // console.log("note : ", note);
-
-
     return (
-        <Container className="w-100">
-            <Row className="align-items-center my-4 w-100 mx-0">
-                <Col className="">
-                    <h1>
-                        {note.title}
-                    </h1>
+        <Container className={`${styles.customContainer} w-100 p-4`}>
+            <Row className="align-items-center mb-4 w-100 mx-0">
+                <Col className="px-0">
+                    <h1>{note.title}</h1>
+
                     {note.tags.length > 0 && (
                         <Stack direction="horizontal" gap={1}>
                             {note.tags.map(
                                 tag => (
                                     <Badge bg={"primary"} key={tag.id}>
-                                        {tag.id}
+                                        {tag.label}
                                     </Badge>
                                 )
                             )}
@@ -42,8 +35,18 @@ export function Note({onDelete}: NoteProps) {
                 </Col>
                 <Col xs="auto" className="justify-content-end">
                     <Stack direction="horizontal" gap={3}>
+
                         <Link to="./edit"><Button>Edit</Button></Link>
-                        <Button variant="outline-danger" onClick={handleDeleteNote}>Delete</Button>
+
+                        <Button variant="outline-danger"
+                            onClick={() => {
+                                onDelete(note.id);
+                                navigate("/");
+                            }}
+                        >
+                            Delete
+                        </Button>
+
                         <Link to="..">
                             <Button variant="outline-secondary">Back</Button>
                         </Link>
@@ -51,5 +54,6 @@ export function Note({onDelete}: NoteProps) {
                 </Col>
             </Row>
             <ReactMarkdown>{note.body}</ReactMarkdown>
-        </Container>)
+        </Container>
+    )
 }
