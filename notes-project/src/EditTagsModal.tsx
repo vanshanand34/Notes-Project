@@ -33,7 +33,10 @@ export default function EditTagsModal({ allTags, show, handleClose, updateTag, d
                                     />
                                 </Col>
                                 <Col xs="auto">
-                                    <Button variant='outline-danger' onClick={() => deleteTag(tag.id)} >
+                                    <Button 
+                                        variant='outline-danger' 
+                                        onClick={() => deleteTag(tag.id)}
+                                    >
                                         &times;
                                     </Button>
                                 </Col>

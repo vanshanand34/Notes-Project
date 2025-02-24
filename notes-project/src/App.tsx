@@ -2,13 +2,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Home';
-import NewPage from './New'
+import NewPage from './NewNote'
 import { useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 import { Container } from 'react-bootstrap';
 import EditPage from './EditPage';
 import { NoteLayout } from './NoteLayout';
-import { Note } from './Note';
+import { Note } from './ShowNote';
 import './App.css';
 
 

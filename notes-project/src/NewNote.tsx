@@ -14,7 +14,7 @@ export default function NewNote(
 ) {
 
     return <>
-        <Container className='p-4'>
+        <Container className='p-4 col-md-8'>
             <Row className='mb-2'>
             <h1>New Note</h1>
             </Row>

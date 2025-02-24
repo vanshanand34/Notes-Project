@@ -15,7 +15,7 @@ export default function EditNote(
 ) {
     const note = useNote();
     return (
-            <Container className='p-4'>
+            <Container className='p-4 col-md-8'>
                 <Row className="my-4">
                     <h1>Edit Note</h1>
                 </Row>

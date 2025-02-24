@@ -1,14 +1,15 @@
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Stack, Button, Form, Badge, Card } from 'react-bootstrap';
+import { Container, Row, Col, Stack, Button, Form } from 'react-bootstrap';
 import { Tag } from './App';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { useState, useMemo } from 'react';
 import EditTagsModal from './EditTagsModal';
+import NotesList from "./NotesList";
 import styles from './NotesList.module.css';
 
-type SimplifiedNote = {
+export type SimplifiedNote = {
     tags: Tag[],
     title: string,
     id: string
@@ -46,7 +47,7 @@ export default function (
 
     return <>
 
-        <Container className="p-4">
+        <Container className="p-4 col-md-8">
             <Row className='my-4 align-items-center'>
                 <Col><h2>Notes List</h2></Col>
                 <Col xs="auto">
@@ -105,31 +106,8 @@ export default function (
                     </Col>
                 </Row>
             </Form>
-            <Row className='g-2 justify-content-center'>
-                {
-                    filteredNotes.map((note) => {
-                        return (
-                            <Col xs={12} sm={6} md={4} lg={3} key={note.id}>
-                                <Card className={`h-100 text-decoration-none`} as={Link} to={`/${note.id}`}>
-                                    <Card.Body className="text-center">
-                                        <h4 className="card-title">{note.title.toUpperCase()}</h4>
-                                        <Container>
-                                            {note.tags.map(
-                                                tag => (
-                                                    <Badge bg={"primary"} className="m-2" key={tag.id}>
-                                                        {tag.label}
-                                                    </Badge>
-                                                )
-                                            )
-                                            }
-                                        </Container>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        )
-                    })
-                }
-            </Row>
+
+            <NotesList notes={filteredNotes} />
 
             <EditTagsModal
                 show={isEditModalOpen}

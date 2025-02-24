@@ -3,7 +3,7 @@
 } */
 
 .customFormInput:focus{
-    outline: 2px solid #1f80ff !important;
+    outline: 1.9px solid #1f80ff !important;
     box-shadow: none;
 }
 .customFormInput{
@@ -11,6 +11,20 @@
     border: 1px solid hsl(0, 0%, 78%);
 }
 
-.customContainer{
-    max-width: 100vw;
+/* .container{
+
+} */
+
+.card{
+    border:1px solid #1f80ff;
+}
+
+.card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 1px 5px rgb(165, 165, 165);
+}
+
+.customBadge{
+    font-weight: 200;
+    font-family: monospace;
 }
