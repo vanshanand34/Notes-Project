@@ -19,10 +19,10 @@ export function Note({ onDelete }: NoteProps) {
         <Container className="mt-4 py-4">
         <Card className={`col-md-8 mx-auto my-4`}>
             <Card.Header className="">
-                <Row className="align-items-center mb-4 col-md-12 mx-0">
-                    <Col className="px-0">
+                <Row className="g-4 align-items-center mb-4 col-md-12 mx-0">
+                    <Col className="px-0 pt-4">
                         <Card.Title>
-                            <h1>{note.title}</h1>
+                            <h3>{note.title}</h3>
                         </Card.Title>
 
                         {note.tags.length > 0 && (
@@ -40,7 +40,7 @@ export function Note({ onDelete }: NoteProps) {
                     <Col xs="auto" className="justify-content-end">
                         <Stack direction="horizontal" gap={3}>
 
-                            <Link to="./edit"><Button>Edit</Button></Link>
+                            <Link to="./edit"><Button variant="outline-success">Edit</Button></Link>
 
                             <Button variant="outline-danger"
                                 onClick={() => {

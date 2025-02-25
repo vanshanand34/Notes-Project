@@ -15,8 +15,8 @@ export default function NewNote(
 
     return <>
         <Container className='p-4 col-md-8'>
-            <Row className='mb-2'>
-            <h1>New Note</h1>
+            <Row className='my-4'>
+                <h1>Create Note</h1>
             </Row>
             <Row>
                 <Col>

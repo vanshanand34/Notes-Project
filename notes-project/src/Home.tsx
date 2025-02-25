@@ -14,6 +14,7 @@ export type SimplifiedNote = {
     title: string,
     id: string
 }
+
 type HomePageProps = {
     allTags: Tag[],
     allNotes: SimplifiedNote[],
@@ -61,8 +62,8 @@ export default function (
                     </Stack>
                 </Col>
             </Row>
-            <Form className='my-4'>
-                <Row>
+            <Form className='my-4 py-2'>
+                <Row className="g-4">
                     <Col xs={12} lg={6}>
                         <Form.Group controlId='title'>
                             <Form.Label>Title</Form.Label>

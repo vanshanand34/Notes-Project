@@ -49,11 +49,8 @@ function App() {
     return notes.map(
       note => {
         return {
-          ...note,
-          // filtering tags of this note from all tags
-          tags: tags.filter(
-            tag => note.tagIds.includes(tag.id)
-          )
+          ...note, // adding tags as originally it only have tagIds property
+          tags: tags.filter(tag => note.tagIds.includes(tag.id))
         }
       }
     )
@@ -72,11 +69,11 @@ function App() {
     setNotes(prevNotes => {
       return (
         prevNotes.map(note => {
-          if (note.id === id) {
-            return { ...note, ...data, tagIds: tags.map(tag => tag.id) }
-          } else {
-            return note
-          }
+          return (
+            (note.id === id) ?
+              { ...note, ...data, tagIds: tags.map(tag => tag.id) } :
+              note
+          )
         })
       )
     })
@@ -93,11 +90,11 @@ function App() {
   function updateTag(id: string, label: string) {
     setTags(tags => (
       tags.map(tag => {
-        if (tag.id === id) {
-          return { ...tag, label: label }
-        } else {
-          return tag
-        }
+        return (
+          (tag.id === id) ?
+            { ...tag, label: label } :
+            tag
+        )
       })
     ))
   }
@@ -112,7 +109,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/'
-              element={<Home allTags={tags}
+            element={<Home allTags={tags}
               allNotes={notesWithTags}
               updateTag={updateTag}
               deleteTag={deleteTag} />}
@@ -124,8 +121,8 @@ function App() {
               element={<EditPage onSubmit={handleUpdateNote} allTags={tags} addTag={addTag} />}
             />
           </Route>
-          <Route path='/new' 
-            element={<NewPage onSubmit={handlecreateNote} allTags={tags} addTag={addTag} />} 
+          <Route path='/new'
+            element={<NewPage onSubmit={handlecreateNote} allTags={tags} addTag={addTag} />}
           />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
