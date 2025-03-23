@@ -17,7 +17,6 @@ The **Notes-Project** is a web application designed to help users create, manage
 ### Frontend:
 - React.js
 - TypeScript
-- JavaScript
 - Tailwind CSS
 
 ### Backend:
