@@ -18,8 +18,7 @@ The **Notes-Project** is a web application designed to help users create, manage
 - React.js
 - TypeScript
 - JavaScript
-- CSS
-- HTML
+- Tailwind CSS
 
 ### Backend:
 - Notes data is being stored in Local Storage and no backend framework/language used
